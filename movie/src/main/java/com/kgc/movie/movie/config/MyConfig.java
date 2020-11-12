@@ -1,6 +1,8 @@
 package com.kgc.movie.movie.config;
 
+import com.kgc.movie.movie.interceptor.MyInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -10,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class MyConfig implements WebMvcConfigurer {
-
+    //跳转页面
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index.html").setViewName("index");
@@ -35,7 +37,11 @@ public class MyConfig implements WebMvcConfigurer {
         registry.addViewController("/member-view.html").setViewName("member-view");
         registry.addViewController("/product-del.html").setViewName("product-del");
         registry.addViewController("/product-list.html").setViewName("product-list");
+    }
 
-
+    //拦截器
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/doLogin","/lib.layui/**","/css/**","/fonts/**","/images/**","/js/**");
     }
 }
