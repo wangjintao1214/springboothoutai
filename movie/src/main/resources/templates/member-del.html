@@ -52,16 +52,16 @@
                         <i class="iconfont nav_right">&#xe697;</i>
                     </a>
                     <ul class="sub-menu opened">
-                        <li >
+                        <li class="current">
                             <a href="member-list.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                会员列表
+                                会员用户列表
                             </a>
                         </li>
-                        <li class="current">
+                        <li>
                             <a href="member-del.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                会员删除
+                                普通用户列表
                             </a>
                         </li>
                         <li>
@@ -180,13 +180,14 @@
                   </div>
                 </div> 
             </form>
-            <xblock><button class="layui-btn layui-btn-danger" onclick="recoverAll()"><i class="layui-icon">&#xe640;</i>批量恢复</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
+            <!--<xblock>&lt;!&ndash;<button class="layui-btn layui-btn-danger" onclick="recoverAll()">&ndash;&gt;<i class="layui-icon">&#xe640;</i>批量恢复</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>-->
+              <xblock><!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>--><button class="layui-btn" onclick="member_add('添加用户','member-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
-                        <th>
+                      <!--  <th>
                             <input type="checkbox" name="" value="">
-                        </th>
+                        </th>-->
                         <th>
                             ID
                         </th>
@@ -217,47 +218,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="1" name="">
-                        </td>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            <u style="cursor:pointer" onclick="member_show('张三','member-show.html','10001','360','400')">
-                                小明
-                            </u>
-                        </td>
-                        <td >
-                            男
-                        </td>
-                        <td >
-                            13000000000
-                        </td>
-                        <td >
-                            admin@mail.com
-                        </td>
-                        <td >
-                            北京市 海淀区
-                        </td>
-                        <td>
-                            2017-01-01 11:11:42
-                        </td>
-                        <td class="td-status">
-                            <span class="layui-btn layui-btn-danger layui-btn-mini">
-                                已删除
-                            </span>
-                        </td>
-                        <td class="td-manage">
-                            <a style="text-decoration:none" onclick="member_recover(this,'10001')" href="javascript:;" title="恢复">
-                                <i class="layui-icon">&#xe618;</i>
-                            </a>
-                            <a title="彻底删除" href="javascript:;" onclick="member_unset(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
+                <tr th:each="devusers:${devuser.list}">
+                    <td th:text="${devusers.id}"></td>
+                    <td th:text="${devusers.uname}"></td>
+                    <td th:text="${devusers.upassword}"></td>
+                    <td th:text="${devusers.uphone}"></td>
+                    <td th:text="${devusers.salemoney}"></td>
+                    <td th:text="${devusers.grade}"></td>
+                    <td class="td-manage">
+                        <a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-edit.html','4','','510')"
+                           class="ml-5" style="text-decoration:none">
+                            <i class="layui-icon">&#xe642;</i>
+                        </a>
+                        <a style="text-decoration:none"  onclick="member_password('修改密码','member-password.html','10001','600','400')"
+                           href="javascript:;" title="修改密码">
+                            <i class="layui-icon">&#xe631;</i>
+                        </a>
+                    </td>
                     </tr>
                 </tbody>
             </table>
@@ -296,7 +273,22 @@
     <!-- 背景切换结束 -->
     <!-- 页面动态效果 -->
     <script>
-
+        // 用户-编辑
+        function member_edit (title,url,id,w,h) {
+            x_admin_show(title,url,w,h);
+        }
+        /*密码-修改*/
+        function member_password(title,url,id,w,h){
+            x_admin_show(title,url,w,h);
+        }
+        /*用户-添加*/
+        function member_add(title,url,w,h){
+            x_admin_show(title,url,w,h);
+        }
+        /*用户-查看*/
+        function member_show(title,url,id,w,h){
+            x_admin_show(title,url,w,h);
+        }
         layui.use(['laydate'], function(){
           laydate = layui.laydate;//日期插件
 

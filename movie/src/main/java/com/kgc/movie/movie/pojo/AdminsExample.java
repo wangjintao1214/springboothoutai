@@ -505,63 +505,63 @@ public class AdminsExample {
             return (Criteria) this;
         }
 
-        public Criteria andGradeidIsNull() {
-            addCriterion("gradeid is null");
+        public Criteria andGradeIsNull() {
+            addCriterion("grade is null");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidIsNotNull() {
-            addCriterion("gradeid is not null");
+        public Criteria andGradeIsNotNull() {
+            addCriterion("grade is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidEqualTo(Integer value) {
-            addCriterion("gradeid =", value, "gradeid");
+        public Criteria andGradeEqualTo(Integer value) {
+            addCriterion("grade =", value, "grade");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidNotEqualTo(Integer value) {
-            addCriterion("gradeid <>", value, "gradeid");
+        public Criteria andGradeNotEqualTo(Integer value) {
+            addCriterion("grade <>", value, "grade");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidGreaterThan(Integer value) {
-            addCriterion("gradeid >", value, "gradeid");
+        public Criteria andGradeGreaterThan(Integer value) {
+            addCriterion("grade >", value, "grade");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("gradeid >=", value, "gradeid");
+        public Criteria andGradeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("grade >=", value, "grade");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidLessThan(Integer value) {
-            addCriterion("gradeid <", value, "gradeid");
+        public Criteria andGradeLessThan(Integer value) {
+            addCriterion("grade <", value, "grade");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidLessThanOrEqualTo(Integer value) {
-            addCriterion("gradeid <=", value, "gradeid");
+        public Criteria andGradeLessThanOrEqualTo(Integer value) {
+            addCriterion("grade <=", value, "grade");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidIn(List<Integer> values) {
-            addCriterion("gradeid in", values, "gradeid");
+        public Criteria andGradeIn(List<Integer> values) {
+            addCriterion("grade in", values, "grade");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidNotIn(List<Integer> values) {
-            addCriterion("gradeid not in", values, "gradeid");
+        public Criteria andGradeNotIn(List<Integer> values) {
+            addCriterion("grade not in", values, "grade");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidBetween(Integer value1, Integer value2) {
-            addCriterion("gradeid between", value1, value2, "gradeid");
+        public Criteria andGradeBetween(Integer value1, Integer value2) {
+            addCriterion("grade between", value1, value2, "grade");
             return (Criteria) this;
         }
 
-        public Criteria andGradeidNotBetween(Integer value1, Integer value2) {
-            addCriterion("gradeid not between", value1, value2, "gradeid");
+        public Criteria andGradeNotBetween(Integer value1, Integer value2) {
+            addCriterion("grade not between", value1, value2, "grade");
             return (Criteria) this;
         }
     }

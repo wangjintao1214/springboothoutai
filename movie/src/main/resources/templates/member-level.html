@@ -52,16 +52,10 @@
                         <i class="iconfont nav_right">&#xe697;</i>
                     </a>
                     <ul class="sub-menu opened">
-                        <li>
+                        <li class="current">
                             <a href="member-list.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                会员列表
-                            </a>
-                        </li>
-                        <li>
-                            <a href="member-del.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                会员删除
+                                用户列表
                             </a>
                         </li>
                         <li class="current">
@@ -161,32 +155,30 @@
         <div class="page-content">
           <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form xbs" action="" >
+            <form class="layui-form xbs" action="/member-level.html" >
                 <div class="layui-form-pane" style="text-align: center;">
                   <div class="layui-form-item" style="display: inline-block;">
-                    <label class="layui-form-label xbs768">日期范围</label>
+                    <!--<label class="layui-form-label xbs768">日期范围</label>
                     <div class="layui-input-inline xbs768">
                       <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
-                    </div>
+                    </div>-->
                     <div class="layui-input-inline xbs768">
-                      <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
+                        <input type="text" name="type" th:value="${session.type}"  placeholder="请输入会员等级" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline">
-                      <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+
                     </div>
                     <div class="layui-input-inline" style="width:80px">
-                        <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        <input type="submit" class="layui-btn" ><i class="layui-icon">&#xe615;</i></input>
                     </div>
                   </div>
-                </div> 
+                </div>
             </form>
-            <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><button class="layui-btn" onclick="level_add('添加用户','level-add.html','','600','300')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
+            <xblock><!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>--><!--<button class="layui-btn" onclick="level_add('添加用户','level-add.html','','600','300')"><i class="layui-icon">&#xe608;</i>添加</button>-->
+                <span class="x-right" style="line-height:40px" th:text="'共'+${membership_levelPageInfo.total }+'条记录'">共有数据：88 条</span></xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
-                        <th>
-                            <input type="checkbox" name="" value="">
-                        </th>
                         <th>
                             ID
                         </th>
@@ -194,37 +186,32 @@
                             等级名
                         </th>
                         <th>
-                            积分范围
+                           优惠额度
                         </th>
-                        <th>
+                       <!-- <th>
                             操作
-                        </th>
+                        </th>-->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="1" name="">
-                        </td>
-                        <td>
+                    <tr th:each="levels:${membership_levelPageInfo.list}">
+                        <td  th:text="${levels.levelId}">
                             1
                         </td>
-                        <td>
+                        <td th:text="${levels.type}">
                             新手
                         </td>
-                        <td >
+                        <td th:text="${levels.gradeIscount}">
                             0-1000
                         </td>
-                        <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="level_edit('编辑','level-edit.html','4','','300')"
+                       <!-- <td class="td-manage">
+                            <a title="编辑" th:href="@{/kiss-edit.html(levelId=${levels.levelId})}"
                             style="text-decoration:none">
+
+                               &lt;!&ndash; <a th:href="@{'/kiss-edit.html/'+${levels.levelId}}">修改</a>&ndash;&gt;
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
-                            <a title="删除" href="javascript:;" onclick="level_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
+                        </td>-->
                     </tr>
                 </tbody>
             </table>
@@ -301,13 +288,6 @@
           
         });
 
-        //批量删除提交
-             function delAll () {
-                layer.confirm('确认要删除吗？',function(index){
-                    //捉到所有被选中的，发异步进行删除
-                    layer.msg('删除成功', {icon: 1});
-                });
-             }
             // 等级-增加
             function level_add (title,url,id,w,h) {
                 x_admin_show(title,url,w,h); 
@@ -316,7 +296,7 @@
             function level_edit (title,url,id,w,h) {
                 x_admin_show(title,url,w,h); 
             }
-           
+
             /*等级-删除*/
             function level_del(obj,id){
                 layer.confirm('确认要删除吗？',function(index){
@@ -325,16 +305,6 @@
                     layer.msg('已删除!',{icon:1,time:1000});
                 });
             }
-        </script>
-        <script>
-        //百度统计可去掉
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
         </script>
 </body>
 </html>
