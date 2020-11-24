@@ -27,21 +27,24 @@ public class MyConfig implements WebMvcConfigurer {
         registry.addViewController("/kiss-edit.html").setViewName("kiss-edit");
         registry.addViewController("/level-add.html").setViewName("level-add");
         registry.addViewController("/level-edit.html").setViewName("level-edit");
-        registry.addViewController("/member-add.html").setViewName("member-add");
-        registry.addViewController("/member-del.html").setViewName("member-del");
-        registry.addViewController("/member-edit.html").setViewName("member-edit");
-        registry.addViewController("/member-kiss.html").setViewName("member-kiss");
-        registry.addViewController("/member-level.html").setViewName("member-level");
-        registry.addViewController("/member-list.html").setViewName("member-list");
         registry.addViewController("/member-password.html").setViewName("member-password");
         registry.addViewController("/member-view.html").setViewName("member-view");
         registry.addViewController("/product-del.html").setViewName("product-del");
         registry.addViewController("/product-list.html").setViewName("product-list");
+
+
+        registry.addViewController("/member-add.html").setViewName("member-add");
+       /* registry.addViewController("/member-del.html").setViewName("member-del");*/
+        registry.addViewController("/member-edit.html").setViewName("member-edit");
+        registry.addViewController("/member-kiss.html").setViewName("member-kiss");
+        registry.addViewController("/member-level.html").setViewName("member-level");
+        registry.addViewController("/member-list.html").setViewName("member-list");
+
     }
 
     //拦截器
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/doLogin","/lib.layui/**","/css/**","/fonts/**","/images/**","/js/**");
+        registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/*/","/doLogin","/lib.layui/**","/css/**","/fonts/**","/images/**","/js/**");
     }
 }

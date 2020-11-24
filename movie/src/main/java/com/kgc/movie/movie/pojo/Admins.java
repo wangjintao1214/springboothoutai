@@ -15,7 +15,7 @@ public class Admins {
 
     private Date createdate;
 
-    private Integer gradeid;
+    private Integer grade;
 
     public Integer getId() {
         return id;
@@ -65,11 +65,11 @@ public class Admins {
         this.createdate = createdate;
     }
 
-    public Integer getGradeid() {
-        return gradeid;
+    public Integer getGrade() {
+        return grade;
     }
 
-    public void setGradeid(Integer gradeid) {
-        this.gradeid = gradeid;
+    public void setGrade(Integer grade) {
+        this.grade = grade;
     }
 }
