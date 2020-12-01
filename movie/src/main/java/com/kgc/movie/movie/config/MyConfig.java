@@ -1,8 +1,20 @@
 package com.kgc.movie.movie.config;
 
+import com.kgc.movie.movie.pojo.Movie_ticket;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.cache.RedisCacheWriter;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.net.UnknownHostException;
 
 /**
  * @author shkstart
@@ -36,6 +48,30 @@ public class MyConfig implements WebMvcConfigurer {
         registry.addViewController("/product-del.html").setViewName("product-del");
         registry.addViewController("/product-list.html").setViewName("product-list");
 
+    }
+    @Bean
+    public RedisTemplate<Object, Movie_ticket> employeeRedisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
+        RedisTemplate<Object, Movie_ticket> template = new RedisTemplate();
+        template.setConnectionFactory(redisConnectionFactory);
+        Jackson2JsonRedisSerializer<Movie_ticket> serializer = new Jackson2JsonRedisSerializer<Movie_ticket>(Movie_ticket.class);
+        template.setDefaultSerializer(serializer);
+        return template;
+    }
 
+
+    @Bean//解决序列化问题，现实的不再是二进制
+    public RedisCacheManager employeeRedisCacheManager(RedisConnectionFactory redisConnectionFactory) {
+        //初始化一个RedisCacheWriter
+        RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
+        //设置CacheManager的值序列化方式为json序列化
+        RedisSerializer<Movie_ticket> jsonSerializer = new Jackson2JsonRedisSerializer(Movie_ticket.class);
+
+        RedisSerializationContext.SerializationPair<Movie_ticket> pair = RedisSerializationContext.SerializationPair
+                .fromSerializer(jsonSerializer);
+        RedisCacheConfiguration defaultCacheConfig = RedisCacheConfiguration.defaultCacheConfig()
+                .serializeValuesWith(pair);
+
+        //初始化RedisCacheManager
+        return new RedisCacheManager(redisCacheWriter, defaultCacheConfig);
     }
 }
