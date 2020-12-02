@@ -3,7 +3,11 @@
 <mapper namespace="com.kgc.movie.movie.mapper.User_MemberMapper" >
   <resultMap id="BaseResultMap" type="com.kgc.movie.movie.pojo.User_Member" >
     <id column="member_id" property="memberId" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="starting_time" property="startingTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="member_money" property="memberMoney" jdbcType="REAL" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    member_id, user_id
+    member_id, user_name, type, starting_time, end_time, member_money
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.kgc.movie.movie.pojo.User_MemberExample" >
     select
@@ -97,8 +101,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.kgc.movie.movie.pojo.User_Member" >
-    insert into user_member (member_id, user_id)
-    values (#{memberId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
+    insert into user_member (member_id, user_name, type, 
+      starting_time, end_time, member_money
+      )
+    values (#{memberId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{startingTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{memberMoney,jdbcType=REAL}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.kgc.movie.movie.pojo.User_Member" >
     insert into user_member
@@ -106,16 +114,40 @@
       <if test="memberId != null" >
         member_id,
       </if>
-      <if test="userId != null" >
-        user_id,
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="startingTime != null" >
+        starting_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="memberMoney != null" >
+        member_money,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="memberId != null" >
         #{memberId,jdbcType=INTEGER},
       </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="startingTime != null" >
+        #{startingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberMoney != null" >
+        #{memberMoney,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -131,8 +163,20 @@
       <if test="record.memberId != null" >
         member_id = #{record.memberId,jdbcType=INTEGER},
       </if>
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startingTime != null" >
+        starting_time = #{record.startingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.memberMoney != null" >
+        member_money = #{record.memberMoney,jdbcType=REAL},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -142,7 +186,11 @@
   <update id="updateByExample" parameterType="map" >
     update user_member
     set member_id = #{record.memberId,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER}
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      starting_time = #{record.startingTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      member_money = #{record.memberMoney,jdbcType=REAL}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -150,15 +198,31 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.kgc.movie.movie.pojo.User_Member" >
     update user_member
     <set >
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="startingTime != null" >
+        starting_time = #{startingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberMoney != null" >
+        member_money = #{memberMoney,jdbcType=REAL},
       </if>
     </set>
     where member_id = #{memberId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.kgc.movie.movie.pojo.User_Member" >
     update user_member
-    set user_id = #{userId,jdbcType=INTEGER}
+    set user_name = #{userName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      starting_time = #{startingTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      member_money = #{memberMoney,jdbcType=REAL}
     where member_id = #{memberId,jdbcType=INTEGER}
   </update>
 </mapper>
