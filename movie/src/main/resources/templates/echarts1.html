@@ -55,7 +55,13 @@
                         <li>
                             <a href="member-list.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                用户列表
+                                会员列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="member-del.html">
+                                <i class="iconfont">&#xe6a7;</i>
+                                会员删除
                             </a>
                         </li>
                         <li>
@@ -64,7 +70,18 @@
                                 等级管理
                             </a>
                         </li>
-
+                        <li>
+                            <a href="member-kiss.html">
+                                <i class="iconfont">&#xe6a7;</i>
+                                积分管理
+                            </a>
+                        </li>
+                      <!--  <li>
+                            <a href="member-view.html">
+                                <i class="iconfont">&#xe6a7;</i>
+                                浏览记录
+                            </a>
+                        </li>-->
                     </ul>
                 </li>
                 <li class="list" >
@@ -74,9 +91,14 @@
                         <i class="iconfont nav_right">&#xe697;</i>
                     </a>
                     <ul class="sub-menu">
-
+                       <!-- <li>
+                            <a href="./category.html">
+                                <i class="iconfont">&#xe6a7;</i>
+                                分类列表
+                            </a>
+                        </li>-->
                         <li>
-                            <a href="product-list.html">
+                            <a href="product-list.html.html">
                                 <i class="iconfont">&#xe6a7;</i>
                                 商品列表
                             </a>
@@ -97,7 +119,13 @@
                     </a>
                     <ul class="sub-menu" style="display:none">
                         <li>
-                            <a href="./echarts1.html">
+                            <a href="/toshowSale">
+                                <i class="iconfont">&#xe6a7;</i>
+                                订单信息
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/toShowMovieInfoByDay">
                                 <i class="iconfont">&#xe6a7;</i>
                                 拆线图
                             </a>
@@ -147,21 +175,61 @@
         <!-- 左侧菜单结束 -->
         <!-- 右侧主体开始 -->
         <div class="page-content">
-          <div class="content">
-            <!-- 右侧内容框架，更改从这里开始 -->
+         <!-- <div class="content">
+            &lt;!&ndash; 右侧内容框架，更改从这里开始 &ndash;&gt;
             <blockquote class="layui-elem-quote">
                 特别声明：ECharts，一个纯 Javascript 的图表库，可以流畅的运行在 PC 和移动设备上，兼容当前绝大部分浏览器（IE8/9/10/11，Chrome，Firefox，Safari等），底层依赖轻量级的 Canvas 类库 ZRender，提供直观，生动，可交互，可高度个性化定制的数据可视化图表。如需使用，详细了解可以访问官网 <a href="http://echarts.baidu.com/" style="color:red">ECharts</a>。 x-admin不承担任何版权问题。
             </blockquote>
-            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+            &lt;!&ndash; 为 ECharts 准备一个具备大小（宽高）的 DOM &ndash;&gt;
             <div id="main" style="width: 100%;height:400px;"></div>
             <blockquote class="layui-elem-quote">
                 注意：本案例的Echarts图表库由cdn引入，需要在线才能正常使用，如想离想，请至Echarts官网下载。
             </blockquote>
-            <!-- 右侧内容框架，更改从这里结束 -->
-          </div>
+            &lt;!&ndash; 右侧内容框架，更改从这里结束 &ndash;&gt;
+          </div>-->
+
+            <table class="layui-table">
+                <thead>
+                <tr>
+                  <!--  <th>
+                        <input type="checkbox" name="" value="">
+                    </th>-->
+                    <th>电影名称
+                    </th>
+                    <th>
+                        时间
+                    </th>
+                    <th>
+                        销售额
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="Saleinfo:${pageInfo.list}">
+                   <!-- <td>
+                        <input type="checkbox" value="1" name="">
+                    </td>-->
+                    <td th:text="${Saleinfo.MovieName}">
+                        1
+                    </td>
+                    <td th:text="${#dates.format(Saleinfo.saleDate,'yyyy-MM-dd')}">
+                        <u style="cursor:pointer" onclick="member_show('张三','member-show.html','10001','360','400')">
+                            小明
+                        </u>
+                    </td>
+                    <td th:text="${Saleinfo.saleMoney}">
+                        男
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
         </div>
+
         <!-- 右侧主体结束 -->
     </div>
+
     <!-- 中部结束 -->
     <!-- 底部开始 -->
    <!-- <div class="footer">
@@ -186,6 +254,7 @@
                 <div class="swiper-slide"><span class="reset">初始化</span></div>
             </div>
         </div>
+
         <div class="bg-out"></div>
         <div id="changer-set"><i class="iconfont">&#xe696;</i></div>   
     </div>
@@ -196,10 +265,10 @@
 
         <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'),'echarts-for-x-admin');
+       // var myChart = echarts.init(document.getElementById('main'),'echarts-for-x-admin');
 
         // 指定图表的配置项和数据
-        var option = {
+       /* var option = {
             title: {
                 text: '折线图堆叠'
             },
@@ -260,11 +329,11 @@
                     data:[820, 932, 901, 934, 1290, 1330, 1320]
                 }
             ]
-        };
+        };*/
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+     //   myChart.setOption(option);
     </script>
         
         <script>

@@ -55,7 +55,13 @@
                         <li class="current">
                             <a href="member-list.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                用户列表
+                                会员列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="member-del.html">
+                                <i class="iconfont">&#xe6a7;</i>
+                                会员删除
                             </a>
                         </li>
                         <li>
@@ -64,12 +70,12 @@
                                 等级管理
                             </a>
                         </li>
-                       <!-- <li>
+                        <li>
                             <a href="member-kiss.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                管理员表
+                                积分管理
                             </a>
-                        </li>-->
+                        </li>
 
                     </ul>
                 </li>
@@ -81,15 +87,15 @@
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="product-list.html">
+                            <a href="/commodity">
                                 <i class="iconfont">&#xe6a7;</i>
                                 商品列表
                             </a>
                         </li>
                         <li>
-                            <a href="product-del.html">
+                            <a href="/addcommodity">
                                 <i class="iconfont">&#xe6a7;</i>
-                                商品删除
+                                商品增加
                             </a>
                         </li>
                     </ul>
@@ -103,7 +109,7 @@
                     </a>
                     <ul class="sub-menu" style="display:none">
                         <li>
-                            <a href="./echarts1.html">
+                            <a href="/toShowMovieInfoByDay">
                                 <i class="iconfont">&#xe6a7;</i>
                                 拆线图
                             </a>
@@ -155,35 +161,180 @@
     <div class="page-content">
         <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <h2><a th:href="@{/addcommodity}" class="layui-btn">添加商品</a></h2>
-            <!--<xblock><button class="layui-btn" onclick="product_add('添加商品','/add','600','500')"><i class="layui-icon">&#xe608;</i>添加</button></xblock>-->
+            <form class="layui-form xbs" action="" >
+                <div class="layui-form-pane" style="text-align: center;">
+                    <div class="layui-form-item" style="display: inline-block;">
+                        <label class="layui-form-label xbs768">日期范围</label>
+
+                        <div class="layui-input-inline xbs768">
+                            <input class="layui-input" placeholder="开始日" default="2000-00-00" id="LAY_demorange_s" name="startDay" th:value="${startDay}">
+                        </div>
+                        <div class="layui-input-inline xbs768">
+                            <input class="layui-input" placeholder="截止日" default="2999-12-31" id="LAY_demorange_e" name="endDay" th:value="${endDay}">
+                        </div>-->
+                       <!-- <div class="layui-input-inline">
+                            <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                        </div>-->
+                        <div class="layui-input-inline" style="width:80px">
+                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+          <!--  <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><button class="layui-btn" onclick="member_add('添加用户','member-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">共有数据：<span th:text="${size}"></span> 条</span></xblock>-->
             <table class="layui-table">
+                <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>商品名称</th>
-                    <th>价格</th>
-                    <th>库存</th>
-                    <th>生产日期</th>
-                    <th>有效日期</th>
-                    <th>操作</th>
+                   <!-- <th>
+                        <input type="checkbox" name="" value="">
+                    </th>-->
+                    <th>
+                        订单ID
+                    </th>
+                    <th>
+                        购买用户
+                    </th>
+                    <th>
+                        电影名称
+                    </th>
+                    <th>
+                        放映时间
+                    </th>
+                    <th>
+                        放映厅
+                    </th>
+                    <th>
+                        消费金额
+                    </th>
+                    <th>
+                        座位号
+                    </th>
+                   <!-- <th>
+                        加入时间
+                    </th>
+                    <th>
+                        状态
+                    </th>
+                    <th>
+                        操作
+                    </th>-->
                 </tr>
-                <tr th:each="list:${list}">
-                    <td th:text="${list.id}" ></td>
-                    <td th:text="${list.name}"></td>
-                    <td th:text="${list.marketValue}"></td>
-                    <td th:text="${list.num}"></td>
-                    <td th:text="${list.safedate}"></td>
-                    <td th:text="${#dates.format(list.producedate,'yyyy-MM-dd')}"></td>
+                </thead>
+                <tbody>
+                <tr th:each="order:${pageInfo.list}">
+                  <!-- <td>
+                          <input type="checkbox" value="1" name="">
+                      </td>-->
+                      <td th:text="${order.movieId}">
+                          1
+                      </td>
+                      <td th:text="${order.userName}">
+                          <u style="cursor:pointer" onclick="member_show('张三','member-show.html','10001','360','400')">
+                              小明
+                          </u>
+                      </td>
+                      <td th:text="${order.movieName}">
+                          男
+                      </td>
+                      <td th:text="${#dates.format(order.movieDate,'yyyy-MM-dd')}">
+                          13000000000
+                      </td>
+                      <td th:text="${order.movieRoom}" >
+                          admin@mail.com
+                      </td >
+                      <td th:text="${order.moviePrice}">
+                          北京市 海淀区
+                      </td>
+                      <td th:text="${order.movieSeat}">
+                          2017-01-01 11:11:42
+                      </td>
+                      <!--<td class="td-status">
+                              <span class="layui-btn layui-btn-normal layui-btn-mini">
+                                  已启用
+                              </span>
+                      </td>
+                      <td class="td-manage">
+                          <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
+                              <i class="layui-icon">&#xe601;</i>
+                          </a>
+                          <a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-edit.html','4','','510')"
+                             class="ml-5" style="text-decoration:none">
+                              <i class="layui-icon">&#xe642;</i>
+                          </a>
+                          <a style="text-decoration:none"  onclick="member_password('修改密码','member-password.html','10001','600','400')"
+                             href="javascript:;" title="修改密码">
+                              <i class="layui-icon">&#xe631;</i>
+                          </a>
+                          <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                             style="text-decoration:none">
+                              <i class="layui-icon">&#xe640;</i>
+                          </a>
+                      </td>-->
+                  </tr>
+                <!--   <tr>
                     <td>
-                        <a title="编辑" th:href="@{/toupd(id=${list.id})}">
+                        <input type="checkbox" value="1" name="">
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        <u style="cursor:pointer" onclick="member_show('张三','member-show.html','10001','360','400')">
+                            小明
+                        </u>
+                    </td>
+                    <td >
+                        男
+                    </td>
+                    <td >
+                        13000000000
+                    </td>
+                    <td >
+                        admin@mail.com
+                    </td>
+                    <td >
+                        北京市 海淀区
+                    </td>
+                    <td>
+                        2017-01-01 11:11:42
+                    </td>
+                    <td class="td-status">
+                            <span class="layui-btn layui-btn-normal layui-btn-mini">
+                                已启用
+                            </span>
+                    </td>
+                    <td class="td-manage">
+                        <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="停用">
+                            <i class="layui-icon">&#xe601;</i>
+                        </a>
+                        <a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-edit.html','4','','510')"
+                           class="ml-5" style="text-decoration:none">
                             <i class="layui-icon">&#xe642;</i>
                         </a>
-                        <a href='#' th:href="@{/delete/}+${list.id}">
+                        <a style="text-decoration:none"  onclick="member_password('修改密码','member-password.html','10001','600','400')"
+                           href="javascript:;" title="修改密码">
+                            <i class="layui-icon">&#xe631;</i>
+                        </a>
+                        <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                           style="text-decoration:none">
                             <i class="layui-icon">&#xe640;</i>
                         </a>
+                    </td>-->
+                  </tr>
+                </tbody>
+            </table>
+            <!--分页-->
+            <div>
+                <tr>
+                    <td><a th:href="@{'toshowSale?pageNum='+${pageInfo.firstPage}+'&startDay='+${startDay}+'&endDay='+${endDay}}">首页</a></td>
+                    <td><a th:href="@{'toshowSale?pageNum='+${pageInfo.prePage}+'&startDay='+${startDay}+'&endDay='+${endDay}}">上一页</a></td>
+                    <td><a th:href="@{'toshowSale?pageNum='+${pageInfo.nextPage}+'&startDay='+${startDay}+'&endDay='+${endDay}}">下一页</a></td>
+                    <td><a th:href="@{'toshowSale?pageNum='+${pageInfo.lastPage}+'+&startDay='+${startDay}+'&endDay='+${endDay}}">尾页</a></td>
+                    <td th:text="'共'+${pageInfo.total }+'条记录'+
+            ${pageInfo.pageNum }+'/'+${pageInfo.pages }+'页'">
                     </td>
                 </tr>
-            </table>
+            </div>
             <!-- 右侧内容框架，更改从这里结束 -->
         </div>
     </div>
@@ -226,11 +377,9 @@
         //以上模块根据需要引入
         //
 
-
-
         var start = {
-            min: laydate.now()
-            ,max: '2099-06-16 23:59:59'
+            min:  '2020-01-01 00:00:00'
+            ,max: laydate.now()
             ,istoday: false
             ,choose: function(datas){
                 end.min = datas; //开始日选好后，重置结束日的最小日期
@@ -238,9 +387,19 @@
             }
         };
 
-        var end = {
+        /*var start = {
             min: laydate.now()
             ,max: '2099-06-16 23:59:59'
+            ,istoday: false
+            ,choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };*/
+
+        var end = {
+            min:  '2020-01-01 00:00:00'
+            ,max: laydate.now()
             ,istoday: false
             ,choose: function(datas){
                 start.max = datas; //结束日选好后，重置开始日的最大日期
@@ -265,8 +424,8 @@
             layer.msg('删除成功', {icon: 1});
         });
     }
-    /*商品-添加*/
-    function product_add(title,url,w,h){
+    /*用户-添加*/
+    function member_add(title,url,w,h){
         x_admin_show(title,url,w,h);
     }
     /*用户-查看*/
@@ -295,18 +454,9 @@
             layer.msg('已启用!',{icon: 6,time:1000});
         });
     }
-    function  toupd(id) {
-
-        alert(id);
-        location.href="/toupd/"+id;
-    }
     // 用户-编辑
     function member_edit (title,url,id,w,h) {
         x_admin_show(title,url,w,h);
-    }
-    // 用户-编辑
-    function product_edit (title,url,id,w,h) {
-        x_admin_show(title,rl,w,h);
     }
     /*密码-修改*/
     function member_password(title,url,id,w,h){
