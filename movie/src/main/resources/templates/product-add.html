@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>星空影院后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+
+</head>
+<body>
+<!-- 中部开始 -->
+<form action="/doadd" method="post" enctype="multipart/form-data" class="layui-form">
+<div class="wrapper">
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
+            <!-- 右侧内容框架，更改从这里开始 -->
+                <div class="layui-form-item">
+                    <label for="L_name" class="layui-form-label">
+                        <span class="x-red">*</span>商品名称
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="L_name" name="name" required="" lay-verify="name"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_marketValue" class="layui-form-label">
+                        <span class="x-red">*</span>价格
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="L_marketValue" name="marketValue" required="" lay-verify="marketValue"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_num" class="layui-form-label">
+                        <span class="x-red">*</span>库存
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="L_num" name="num" required="" lay-verify="num"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_safedate" class="layui-form-label">
+                        <span class="x-red">*</span>生产日期
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="L_safedate" name="safedate" required="" lay-verify="safedate"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_producedate" class="layui-form-label">
+                        <span class="x-red">*</span>有效日期
+                    </label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="L_producedate" name="producedate" required="" lay-verify="producedate"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="x-red"></span>
+                    </div>
+                </div>
+                <div>
+                    <tr>
+                        <td style="text-align:right;">产品主图：</td>
+                        <td>
+                            <input type="file" value="上传图片" name="product_img" id="chanpinzhutu"
+                                   class="hide"/>
+                            <label for="chanpinzhutu" class="labelBtn2"></label>
+                        </td>
+                    </tr>
+                       <!-- <td style="text-align:right;">产品主图：</td>
+                        <td>
+                            <input type="file" value="上传图片" name="a_downloadLink" multiple="multiple" id="tupian"
+                                   class="hide"/>
+                            <label for="tupian" class="labelBtn2">本地上传(最多选择N张)</label>
+                        </td>
+                    </tr>-->
+                </div>
+                <div class="layui-form-item">
+                    <!--<label for="L_repass" class="layui-form-label">-->
+                    </label>
+                    <input type="submit" class="layui-btn" value="增加">
+                </div>
+
+            <!-- 右侧内容框架，更改从这里结束 -->
+        </div>
+    </div>
+    <!-- 右侧主体结束 -->
+</div>
+</form>
+<!-- 中部结束 -->
+<script>
+    //百度统计可去掉
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>
