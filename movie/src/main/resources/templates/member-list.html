@@ -24,7 +24,7 @@
             <a href="javascript:;" th:text="${session.name}">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
                 <dd><a href="">个人信息</a></dd>
-                <dd><a href="">切换帐号</a></dd>
+                <dd><a href="/doLogout">切换帐号</a></dd>
                 <dd><a th:href="@{/doLogout}">退出</a></dd>
             </dl>
         </li>

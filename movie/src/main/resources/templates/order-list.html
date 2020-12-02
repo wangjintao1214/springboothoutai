@@ -24,8 +24,8 @@
             <a href="javascript:;">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
                 <dd><a href="">个人信息</a></dd>
-                <dd><a href="">切换帐号</a></dd>
-                <dd><a href="./login.html">退出</a></dd>
+                <dd><a href="/doLogout">切换帐号</a></dd>
+                <dd><a href="/doLogout">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item"><a href="/">前台首页</a></li>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="layui-input-inline xbs768">
                             <input class="layui-input" placeholder="截止日" default="2999-12-31" id="LAY_demorange_e" name="endDay" th:value="${endDay}">
-                        </div>-->
+                        </div>
                        <!-- <div class="layui-input-inline">
                             <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
                         </div>-->
