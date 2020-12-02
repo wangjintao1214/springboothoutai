@@ -1,8 +1,9 @@
 package com.kgc.movie.movie.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Admins {
+public class Admins  /*implements Serializable*/ {
     private Integer id;
 
     private String name;

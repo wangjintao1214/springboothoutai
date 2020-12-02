@@ -1,6 +1,8 @@
 package com.kgc.movie.movie.pojo;
 
-public class User {
+import java.io.Serializable;
+
+public class User /*implements Serializable*/ {
     private Integer id;
 
     private String uname;
@@ -8,6 +10,15 @@ public class User {
     private String upassword;
 
     private String uphone;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Integer getId() {
         return id;

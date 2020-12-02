@@ -1,9 +1,29 @@
 package com.kgc.movie.movie.pojo;
 
-public class User_Member {
+import java.io.Serializable;
+
+public class User_Member /*implements Serializable*/ {
     private Integer memberId;
 
     private Integer userId;
+    private User user;
+    private Membership_level membership_level;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Membership_level getMembership_level() {
+        return membership_level;
+    }
+
+    public void setMembership_level(Membership_level membership_level) {
+        this.membership_level = membership_level;
+    }
 
     public Integer getMemberId() {
         return memberId;
