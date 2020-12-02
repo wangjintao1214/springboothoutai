@@ -64,12 +64,12 @@
                                 等级管理
                             </a>
                         </li>
-                        <li class="current">
+                       <!-- <li class="current">
                             <a href="member-kiss.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                积分管理
+                                管理员表
                             </a>
-                        </li>
+                        </li>-->
 
                     </ul>
                 </li>
@@ -155,73 +155,65 @@
         <div class="page-content">
           <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form xbs" action="" >
+            <form class="layui-form xbs" action="/member-kiss.html" >
                 <div class="layui-form-pane" style="text-align: center;">
                   <div class="layui-form-item" style="display: inline-block;">
-                    <label class="layui-form-label xbs768">日期范围</label>
-                    <div class="layui-input-inline xbs768">
-                      <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
-                    </div>
-                    <div class="layui-input-inline xbs768">
-                      <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
-                    </div>
                     <div class="layui-input-inline">
-                      <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                      <input type="text" name="name"  placeholder="请输入用户名" th:value="${session.name}" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline" style="width:80px">
-                        <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                        <input type="submit" class="layui-btn" ><i class="layui-icon">&#xe615;</i></input>
                     </div>
                   </div>
-                </div> 
+                </div>
             </form>
-            <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><button class="layui-btn" onclick="kiss_add('添加事件','kiss-add.html')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
+              <span class="x-right" style="line-height:40px" th:text="'共'+${PageInfo.total }+'条记录'"></span></xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
                         <th>
-                            <input type="checkbox" name="" value="">
-                        </th>
-                        <th>
                             ID
                         </th>
                         <th>
-                            事件
+                            用户
                         </th>
                         <th>
-                            积分
+                            密码
                         </th>
                         <th>
-                            操作
+                           性别
+                        </th>
+                        <th>
+                           手机号
+                        </th>
+                        <th>
+                           日期
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <input type="checkbox" value="1" name="">
-                        </td>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            回复
-                        </td>
-                        <td >
-                            5
-                        </td>
-                        <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="kiss_edit('编辑','kiss-edit.html','4','','300')"
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="kiss_del(this,'1')" 
-                            style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
-                            </a>
-                        </td>
+                <tr th:each="admin:${PageInfo.list}">
+                    <td th:text="${admin.id}"></td>
+                    <td th:text="${admin.name}"></td>
+                    <td ><input type="password" th:value="${admin.passwd}" disabled="true"></td>
+                    <td  th:if="${admin.grade==0}" th:text="女"></td>
+                    <td  th:if="${admin.grade==1}" th:text="男"></td>
+                    <td th:text="${admin.phone}"></td>
+                    <td th:text="${#dates.format(admin.createdate,'yyyy-MM-dd')}"></td>
                     </tr>
                 </tbody>
             </table>
+              <table>
+                  <tr>
+                      <td><a th:href="@{'member-kiss.html?pageNumStr='+${PageInfo.firstPage}}">首页</a></td>
+                      <td><a th:href="@{'member-kiss.html?pageNumStr='+${PageInfo.prePage}}">上一页</a></td>
+                      <td><a th:href="@{'member-kiss.html?pageNumStr='+${PageInfo.nextPage}}">下一页</a></td>
+                      <td><a th:href="@{'member-kiss.html?pageNumStr='+${PageInfo.lastPage}}">尾页</a></td>
+                      <td th:text="'共'+${PageInfo.total }+'条记录'+
+            ${PageInfo.pageNum }+'/'+${PageInfo.pages }+'页'">
+                      </td>
+                  </tr>
+              </table>
             <!-- 右侧内容框架，更改从这里结束 -->
           </div>
         </div>

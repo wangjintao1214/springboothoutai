@@ -1,11 +1,22 @@
 package com.kgc.movie.movie.pojo;
 
-public class Membership_level {
+import java.io.Serializable;
+
+public class Membership_level /*implements Serializable*/ {
     private Integer levelId;
 
     private String type;
 
     private String gradeIscount;
+
+    @Override
+    public String toString() {
+        return "Membership_level{" +
+                "levelId=" + levelId +
+                ", type='" + type + '\'' +
+                ", gradeIscount='" + gradeIscount + '\'' +
+                '}';
+    }
 
     public Integer getLevelId() {
         return levelId;

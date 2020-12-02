@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>星空影院后台管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/xadmin.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
@@ -15,28 +15,28 @@
 
 </head>
 <body>
-    <!-- 顶部开始 -->
-    <div class="container">
-        <div class="logo"><a href="./index.html">星空影院</a></div>
-        <div class="open-nav"><i class="iconfont">&#xe699;</i></div>
-        <ul class="layui-nav right" lay-filter="">
-          <li class="layui-nav-item">
+<!-- 顶部开始 -->
+<div class="container">
+    <div class="logo"><a href="./index.html">星空影院</a></div>
+    <div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+    <ul class="layui-nav right" lay-filter="">
+        <li class="layui-nav-item">
             <a href="javascript:;" th:text="${session.name}">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a href="">个人信息</a></dd>
-              <dd><a href="">切换帐号</a></dd>
+                <dd><a href="">个人信息</a></dd>
+                <dd><a href="">切换帐号</a></dd>
                 <dd><a th:href="@{/doLogout}">退出</a></dd>
             </dl>
-          </li>
-          <li class="layui-nav-item"><a href="/">前台首页</a></li>
-        </ul>
-    </div>
-    <!-- 顶部结束 -->
-    <!-- 中部开始 -->
-    <div class="wrapper">
-        <!-- 左侧菜单开始 -->
-        <div class="left-nav">
-          <div id="side-nav">
+        </li>
+        <li class="layui-nav-item"><a href="/">前台首页</a></li>
+    </ul>
+</div>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+<div class="wrapper">
+    <!-- 左侧菜单开始 -->
+    <div class="left-nav">
+        <div id="side-nav">
             <ul id="nav">
                 <li class="list" current>
                     <a href="./index.html">
@@ -58,28 +58,22 @@
                                 用户列表
                             </a>
                         </li>
-                        <!--<li>
-                            <a href="member-del.html">
-                                <i class="iconfont">&#xe6a7;</i>
-                                普通用户列表
-                            </a>
-                        </li>-->
                         <li>
                             <a href="member-level.html">
                                 <i class="iconfont">&#xe6a7;</i>
                                 等级管理
                             </a>
                         </li>
-                        <li>
+                       <!-- <li>
                             <a href="member-kiss.html">
                                 <i class="iconfont">&#xe6a7;</i>
-                                积分管理
+                                管理员表
                             </a>
-                        </li>
+                        </li>-->
 
                     </ul>
                 </li>
-                <li class="list" >
+                <li class="list">
                     <a href="javascript:;">
                         <i class="iconfont">&#xe6a3;</i>
                         商品管理
@@ -101,7 +95,7 @@
                     </ul>
                 </li>
 
-                <li class="list" >
+                <li class="list">
                     <a href="javascript:;">
                         <i class="iconfont">&#xe6a3;</i>
                         系统统计
@@ -154,161 +148,151 @@
                 </li>
 
             </ul>
-          </div>
         </div>
-        <!-- 左侧菜单结束 -->
-        <!-- 右侧主体开始 -->
-        <div class="page-content">
-          <div class="content">
+    </div>
+    <!-- 左侧菜单结束 -->
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="content">
             <!-- 右侧内容框架，更改从这里开始 -->
-            <form class="layui-form xbs" action="/member-list.html" >
+            <form class="layui-form xbs" action="/member-list.html">
                 <div class="layui-form-pane" style="text-align: center;">
-                  <div class="layui-form-item" style="display: inline-block;">
-                    <!--<label class="layui-form-label xbs768">日期范围</label>
-                    <div class="layui-input-inline xbs768">
-                      <input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
-                    </div>-->
-                    <div class="layui-input-inline xbs768">
-                     <!-- <input class="layui-input" placeholder="截止日" id="LAY_demorange_e">-->
-                        <select name="grade" id="grade">
-                            <option value="0" th:text="请选择">请选择</option>
-                            <option th:each="levels:${membership_levels}"
-                                    th:value="${levels.levelId}" th:text="${levels.type}">
-                            </option>
-                        </select>
+                    <div class="layui-form-item" style="display: inline-block;">
+                        <div class="layui-input-inline xbs768">
+                        </div>
+                        <div class="layui-input-inline">
+                            <input type="text" name="uname" th:value="${session.uname}" placeholder="请输入用户名"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline" style="width:80px">
+                            <input type="submit" class="layui-btn"><i class="layui-icon">&#xe615;</i></input>
+                        </div>
                     </div>
-                    <div class="layui-input-inline">
-                      <input type="text" name="uname" th:value="${session.uname}"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
-                    </div>
-                    <div class="layui-input-inline" style="width:80px">
-                        <input type="submit" class="layui-btn" ><i class="layui-icon">&#xe615;</i></input>
-                    </div>
-                  </div>
-                </div> 
+                </div>
             </form>
-            <xblock><!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>-->
-                <button class="layui-btn" onclick="member_add('添加用户','member-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px" th:text="'共'+${devuser.total }+'条记录'"></span></xblock>
+            <xblock>
+                <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button>-->
+                <!--<button class="layui-btn" onclick="member_add('添加用户','member-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button>-->
+                <span class="x-right" style="line-height:40px" th:text="'共'+${userPageInfo.total }+'条记录'"></span>
+            </xblock>
             <table class="layui-table">
                 <thead>
-                    <tr>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            用户名
-                        </th>
-                        <th>
-                           密码
-                        </th>
-                        <th>
-                            手机号
-                        </th>
-                        <th>
-                            总消费额
-                        </th>
-                        <th>
-                            会员等级
-                        </th>
-                        <th>
-                            操作
-                        </th>
-                    </tr>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        用户名
+                    </th>
+                    <th>
+                        密码
+                    </th>
+                    <th>
+                        手机号
+                    </th>
+                    <th>
+                        会员等级
+                    </th>
+                </tr>
                 </thead>
                 <tbody>
-                <tr th:each="devusers:${devuser.list}">
-                    <td th:text="${devusers.id}"></td>
-                    <td th:text="${devusers.uname}"></td>
-                    <td th:text="${devusers.upassword}"></td>
-                    <td th:text="${devusers.uphone}"></td>
-                    <td th:text="${devusers.salemoney}"></td>
-                    <td th:text="${devusers.membership_level.type}"></td>
-                        <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-edit.html','4','','510')"
-                            class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a style="text-decoration:none"  onclick="member_password('修改密码','member-password.html','10001','600','400')"
-                            href="javascript:;" title="修改密码">
-                                <i class="layui-icon">&#xe631;</i>
-                            </a>
-                        </td>
-                    </tr>
+                <tr th:each="user:${userPageInfo.list}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.uname}"></td>
+                    <td><input type="password" th:value="${user.upassword}" disabled="true"></td>
+                    <td th:text="${user.uphone}"></td>
+                    <td th:if="${user.type==null}" th:text="普通用户"></td>
+                    <td th:if="${user.type!=null}" th:text="${user.type}"></td>
+                </tr>
                 </tbody>
             </table>
-              <table>
+            <table>
+                <tr>
+                    <td><a th:href="@{'member-list.html?pageNumStr='+${userPageInfo.firstPage}}">首页</a></td>
+                    <td><a th:href="@{'member-list.html?pageNumStr='+${userPageInfo.prePage}}">上一页</a></td>
+                    <td><a th:href="@{'member-list.html?pageNumStr='+${userPageInfo.nextPage}}">下一页</a></td>
+                    <td><a th:href="@{'member-list.html?pageNumStr='+${userPageInfo.lastPage}}">尾页</a></td>
+                    <td th:text="'共'+${userPageInfo.total }+'条记录'+
+            ${userPageInfo.pageNum }+'/'+${userPageInfo.pages }+'页'">
+                    </td>
+                </tr>
+            </table>
+            <!--         <table>
 
-                  <tr>
-                      <td><a th:href="@{'member-list.html?pageNumStr='+${devuser.firstPage}+'&grade='+${session.grade}+'&uname='+${session.uname}}">首页</a></td>
-                      <td><a th:href="@{'member-list.html?pageNumStr='+${devuser.prePage}+'&grade='+${session.grade}+'&uname='+${session.uname}}">上一页</a></td>
-                      <td><a th:href="@{'member-list.html?pageNumStr='+${devuser.nextPage}+'&grade='+${session.grade}+'&uname='+${session.uname}}">下一页</a></td>
-                      <td><a th:href="@{'member-list.html?pageNumStr='+${devuser.lastPage}+'&grade='+${session.grade}+'&uname='+${session.uname}}">尾页</a></td>
-                      <td th:text="'共'+${devuser.total }+'条记录'+
-            ${devuser.pageNum }+'/'+${devuser.pages }+'页'">
-                      </td>
-                  </tr>
-              </table>
+                         <tr>
+                             <td><a th:href="@{'member-list.html?pageNumStr='+${userPageInfo.firstPage}+'&grade='+${session.grade}+'&uname='+${session.uname}}">首页</a></td>
+                             <td><a th:href="@{'member-list.html?pageNumStr='+${userPageInfo.prePage}+'&grade='+${session.grade}+'&uname='+${session.uname}}">上一页</a></td>
+                             <td><a th:href="@{'member-list.html?pageNumStr='+${userPageInfo.nextPage}+'&grade='+${session.grade}+'&uname='+${session.uname}}">下一页</a></td>
+                             <td><a th:href="@{'member-list.html?pageNumStr='+${userPageInfo.lastPage}+'&grade='+${session.grade}+'&uname='+${session.uname}}">尾页</a></td>
+                             <td th:text="'共'+${userPageInfo.total }+'条记录'+
+                   ${userPageInfo.pageNum }+'/'+${userPageInfo.pages }+'页'">
+                             </td>
+                         </tr>
+                     </table>-->
             <!-- 右侧内容框架，更改从这里结束 -->
-          </div>
         </div>
-        <!-- 右侧主体结束 -->
     </div>
-    <!-- 中部结束 -->
-    <!-- 底部开始 -->
-   <!-- <div class="footer">
-        <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved. 本后台系统由X前端框架提供前端技术支持</div>  
-    </div>-->
-    <!-- 底部结束 -->
-    <!-- 背景切换开始 -->
-    <div class="bg-changer">
-        <div class="swiper-container changer-list">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img class="item" src="./images/a.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/b.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/c.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/d.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/e.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/f.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/g.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/h.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/i.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/j.jpg" alt=""></div>
-                <div class="swiper-slide"><img class="item" src="./images/k.jpg" alt=""></div>
-                <div class="swiper-slide"><span class="reset">初始化</span></div>
-            </div>
+    <!-- 右侧主体结束 -->
+</div>
+<!-- 中部结束 -->
+<!-- 底部开始 -->
+<!-- <div class="footer">
+     <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved. 本后台系统由X前端框架提供前端技术支持</div>
+ </div>-->
+<!-- 底部结束 -->
+<!-- 背景切换开始 -->
+<div class="bg-changer">
+    <div class="swiper-container changer-list">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img class="item" src="./images/a.jpg" alt=""></div>
+            <div class="swiper-slide"><img class="item" src="./images/b.jpg" alt=""></div>
+            <div class="swiper-slide"><img class="item" src="./images/c.jpg" alt=""></div>
+            <div class="swiper-slide"><img class="item" src="./images/d.jpg" alt=""></div>
+            <div class="swiper-slide"><img class="item" src="./images/e.jpg" alt=""></div>
+            <div class="swiper-slide"><img class="item" src="./images/f.jpg" alt=""></div>
+            <div class="swiper-slide"><img class="item" src="./images/g.jpg" alt=""></div>
+            <div class="swiper-slide"><img class="item" src="./images/h.jpg" alt=""></div>
+            <div class="swiper-slide"><img class="item" src="./images/i.jpg" alt=""></div>
+            <div class="swiper-slide"><img class="item" src="./images/j.jpg" alt=""></div>
+            <div class="swiper-slide"><img class="item" src="./images/k.jpg" alt=""></div>
+            <div class="swiper-slide"><span class="reset">初始化</span></div>
         </div>
-        <div class="bg-out"></div>
-        <div id="changer-set"><i class="iconfont">&#xe696;</i></div>   
     </div>
-    <!-- 背景切换结束 -->
-    <!-- 页面动态效果 -->
-    <script>
+    <div class="bg-out"></div>
+    <div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+</div>
+<!-- 背景切换结束 -->
+<!-- 页面动态效果 -->
+<script>
 
-        //批量删除提交
-         function delAll () {
-            layer.confirm('确认要删除吗？',function(index){
-                //捉到所有被选中的，发异步进行删除
-                layer.msg('删除成功', {icon: 1});
-            });
-         }
+    //批量删除提交
+    function delAll() {
+        layer.confirm('确认要删除吗？', function (index) {
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+        });
+    }
 
-         /*用户-添加*/
-         function member_add(title,url,w,h){
-             x_admin_show(title,url,w,h);
-         }
-         /*用户-查看*/
-         function member_show(title,url,id,w,h){
-             x_admin_show(title,url,w,h);
-         }
+    /*用户-添加*/
+    function member_add(title, url, w, h) {
+        x_admin_show(title, url, w, h);
+    }
 
-        // 用户-编辑
-        function member_edit (title,url,id,w,h) {
-            x_admin_show(title,url,w,h); 
-        }
-        /*密码-修改*/
-        function member_password(title,url,id,w,h){
-            x_admin_show(title,url,w,h);  
-        }
-        </script>
+    /*用户-查看*/
+    function member_show(title, url, id, w, h) {
+        x_admin_show(title, url, w, h);
+    }
+
+    // 用户-编辑
+    function member_edit(title, url, id, w, h) {
+        x_admin_show(title, url, w, h);
+    }
+
+    /*密码-修改*/
+    function member_password(title, url, id, w, h) {
+        x_admin_show(title, url, w, h);
+    }
+</script>
 
 </body>
 </html>
