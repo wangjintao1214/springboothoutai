@@ -39,8 +39,8 @@ public class SaleController {
 
 
     @RequestMapping("/showData")
-    @ResponseBody
-    public List toshowData(Model model) {
+  //  @ResponseBody
+    public String toshowData(Model model) {
         // Map<Integer,Integer> map =null;
         Map<String, Integer> map2 = saleService.selectByMovieYingchengId();
         model.addAttribute("map", map2);
@@ -49,7 +49,7 @@ public class SaleController {
             arrayList.add(integer);
         }
         model.addAttribute("list", map2);
-        return arrayList;
+        return "echarts4";
     }
 
 
