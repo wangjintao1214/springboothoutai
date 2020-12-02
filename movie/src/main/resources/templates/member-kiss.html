@@ -64,6 +64,12 @@
                                   等级管理
                               </a>
                           </li>
+                          <li>
+                              <a href="member-kiss.html">
+                                  <i class="iconfont">&#xe6a7;</i>
+                                  会员用户
+                              </a>
+                          </li>
                       </ul>
                   </li>
                   <li class="list" >
@@ -128,7 +134,7 @@
                 <div class="layui-form-pane" style="text-align: center;">
                   <div class="layui-form-item" style="display: inline-block;">
                     <div class="layui-input-inline">
-                      <input type="text" name="name"  placeholder="请输入用户名" th:value="${session.name}" autocomplete="off" class="layui-input">
+                      <input type="text" name="userName"  placeholder="请输入用户名" th:value="${session.userName}" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline" style="width:80px">
                         <input type="submit" class="layui-btn" ><i class="layui-icon">&#xe615;</i></input>
@@ -139,36 +145,35 @@
               <span class="x-right" style="line-height:40px" th:text="'共'+${PageInfo.total }+'条记录'"></span></xblock>
             <table class="layui-table">
                 <thead>
-                    <tr>
-                        <th>
-                            ID
-                        </th>
-                        <th>
-                            用户
-                        </th>
-                        <th>
-                            密码
-                        </th>
-                        <th>
-                           性别
-                        </th>
-                        <th>
-                           手机号
-                        </th>
-                        <th>
-                           日期
-                        </th>
-                    </tr>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        用户名
+                    </th>
+                    <th>
+                        会员等级
+                    </th>
+                    <th>
+                        充值时间
+                    </th>
+                    <th>
+                        到期时间
+                    </th>
+                    <th>
+                        消费金额
+                    </th>
+                </tr>
                 </thead>
                 <tbody>
-                <tr th:each="admin:${PageInfo.list}">
-                    <td th:text="${admin.id}"></td>
-                    <td th:text="${admin.name}"></td>
-                    <td ><input type="password" th:value="${admin.passwd}" disabled="true"></td>
-                    <td  th:if="${admin.grade==0}" th:text="女"></td>
-                    <td  th:if="${admin.grade==1}" th:text="男"></td>
-                    <td th:text="${admin.phone}"></td>
-                    <td th:text="${#dates.format(admin.createdate,'yyyy-MM-dd')}"></td>
+                <tr th:each="UserMember:${PageInfo.list}">
+                    <td th:text="${UserMember.memberId}"></td>
+                    <td th:text="${UserMember.userName}"></td>
+                    <td th:text="${UserMember.type}"></td>
+                    <td th:text="${#dates.format(UserMember.startingTime,'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(UserMember.endTime,'yyyy-MM-dd')}"></td>
+                    <td th:text="${UserMember.memberMoney}"></td>
                     </tr>
                 </tbody>
             </table>
